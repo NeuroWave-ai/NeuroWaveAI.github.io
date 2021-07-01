@@ -1,1 +1,158 @@
-<h1>test</h1>
+<!DOCTYPE html>
+<html>
+<head>
+   <meta charset="utf-8"> 
+   <title>Audio samples from Cross-utterance Conditioned VAE for Non-autoregressive TTS</title>
+   <link rel="stylesheet" href="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/css/bootstrap.min.css">  
+   <script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+   <script src="https://cdn.staticfile.org/twitter-bootstrap/3.3.7/js/bootstrap.min.js"></script>
+</head>
+<body>
+<style>
+#test td{
+  padding-left: 10px;
+  background-color: #f0f8ff;
+  box-shadow: inset 1px -1px 1px #444, inset -1px 1px 1px #444;
+}
+/* #ebffff */
+</style>
+<div class="container">
+  <div class="page-header">
+    <h1>Audio samples from Cross-utterance Conditioned VAE for Non-autoregressive TTS</h1>
+    <br>
+    <p class="lead">
+      This is a demo page of the paper
+      <strong>“Cross-utterance Conditioned VAE for Non-autoregressive TTS”</strong>
+    </p>
+    <p class="lead">
+      <strong>Authors: </strong>
+      Yang Li, Guangzhi Sun, Hua Jiang, Cheng Yu, Weiqin Zu, Ying Wen, Fanglei Sun, Jun Wang
+    </p>
+  </div>
+
+<h2><p>Demos</p ></h2>
+
+<h3><p>Ablation Study</p ></h3>
+<p id="LJSAbla"></p>
+
+<script>
+  arr1 = ["groudtruth","baseline","baseline+Fine_grained_VAE",
+  "PriorSpeech-C","PriorSpeech(C1)","PriorSpeech(C3)","PriorSpeech(C5)"]
+  model = ["groudtruth","baseline","baseline+Fine-grained VAE",
+  "CUC-VAE(-C)","CUC-VAE(L=1)","CUC-VAE(L=3)","CUC-VAE(L=5)"]
+  arr2 = ["LJ003-0044","LJ006-0168"]
+  text = ['the reforms which were to be attempted in that prison',
+  'to taking the descriptions of newly-arrived prisoners.'
+]
+  var str = '';
+  for (y in arr2)
+  {
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
+    str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
+    for (x in arr1)
+    {
+      str += '';
+      str += '<tr>'
+      str += "<td>" + model[x] + "</td>";
+      str += '<td><audio controls><source src="LJSpeech/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
+      str += '</tr>'
+    }
+    str += "</tbody> </table>";
+    str += '<h1> </h1>';
+  }
+  document.getElementById("LJSAbla").innerHTML=str;
+</script>
+
+<h3><p>Synthesized by model trained in LJ-Speech</p ></h3>
+<p id="LJS"></p>
+
+<script>
+  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE",
+  "PriorSpeech(C1)"]
+  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE",
+  "CUC-VAE"]
+  arr2 = ["LJ017-0271","LJ049-0225"]
+  text = ['lyons asked the time, and was told it was only five.',
+  'the commission feels the secret service and the fbi, as well as the state department and the cia when the president travels abroad,'
+]
+  var str = '';
+  for (y in arr2)
+  {
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
+    str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
+    for (x in arr1)
+    {
+      str += '';
+      str += '<tr>'
+      str += "<td>" + model[x] + "</td>";
+      str += '<td><audio controls><source src="LJSpeech/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
+      str += '</tr>'
+    }
+    str += "</tbody> </table>";
+    str += '<h1> </h1>';
+  }
+  document.getElementById("LJS").innerHTML=str;
+</script>
+
+<!-- <h3><p>Synthesized by model trained in LibriTTS</p ></h3>
+<h4>Male</h4>
+<p id="LibriMale"></p>
+
+<script type=text/javascript>
+  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech"]
+  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE","CUC-VAE"]
+  arr2 = ["303_123507_000010_000001","78_369_000063_000003"]
+  text = ['after they had retired for the night it was customary for the adults to carry on a desultory conversation for a short time before lapsing into sleep, and now that i could understand their language i was always a keen listener, although i never proffered any remarks myself.',
+  "what does it avail that i now ask thee to pardon me?"
+]
+  var str = '';
+  for (y in arr2)
+  {
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
+    str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
+    for (x in arr1)
+    {
+      str += '';
+      str += '<tr>'
+      str += "<td>" + model[x] + "</td>";
+      str += '<td><audio controls><source src="LibriTTS/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
+      str += '</tr>'
+    }
+    str += "</tbody> </table>";
+    str += '<h1> </h1>';
+  }
+  document.getElementById("LibriMale").innerHTML=str;
+</script>
+
+<h4><p>Female</p ></h4>
+<p id="LibriFemale"></p>
+
+<script type=text/javascript>
+  arr1 = ["groudtruth","baseline","baseline+Global_VAE","baseline+Fine_grained_VAE","PriorSpeech"]
+  model = ["groudtruth","baseline","baseline+Global VAE","baseline+Fine-grained VAE","CUC-VAE"]
+  arr2 = ["2570_157243_000126_000001","4138_11079_000008_000003"]
+  text = ["or at least i thought so then.",
+  '"and they call this travelling for pleasure!" thought poor katy.',
+]
+  var str = '';
+  for (y in arr2)
+  {
+    str += '<blockquote> Sampled text: ' + text[y] + '</blockquote>'
+    str += '<table border="1" id="test" align="center" width = "700"> <tbody>';
+    for (x in arr1)
+    {
+      str += '';
+      str += '<tr>'
+      str += "<td>" + model[x] + "</td>";
+      str += '<td><audio controls><source src="LibriTTS/' + arr1[x] +"/" + arr2[y] + '.wav" type="audio/wav">您的浏览器不支持 audio 元素。</audio></td>';
+      str += '</tr>'
+    }
+    str += "</tbody> </table>";
+    str += '<h1> </h1>';
+  }
+  document.getElementById("LibriFemale").innerHTML=str;
+</script> -->
+</div>
+
+</body>
+</html>
